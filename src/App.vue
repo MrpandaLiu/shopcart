@@ -1,28 +1,31 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>父标题：我的第一个vue-cli构建的程序</h1>
+    <shopcart :title="title" ></shopcart>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Shopcart from './components/Shopcart.vue'
 
 export default {
   name: 'app',
+  data() {
+    return {
+      title: '子标题：我的第一个vue-cli构建的程序'
+    }
+  },
   components: {
-    HelloWorld
-  }
+    Shopcart
+  },
+  mounted() {
+        console.log(this.title);
+    }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<style scoped>
+h1 {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
