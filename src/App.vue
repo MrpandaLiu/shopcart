@@ -1,12 +1,14 @@
 <template>
   <div id="app">
     <h1>父标题：我的第一个vue-cli构建的程序</h1>
-    <shopcart :title="title" ></shopcart>
+    <tab-bar></tab-bar>
+    <router-view :title="title"></router-view>
   </div>
 </template>
 
 <script>
 import Shopcart from './components/Shopcart.vue'
+import TabBar from './components/TabBar.vue'
 
 export default {
   name: 'app',
@@ -16,11 +18,9 @@ export default {
     }
   },
   components: {
-    Shopcart
-  },
-  mounted() {
-        console.log(this.title);
-    }
+    Shopcart,
+    TabBar
+  }
 }
 </script>
 

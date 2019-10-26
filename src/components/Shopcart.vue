@@ -7,25 +7,11 @@
               <td>单价</td>
               <td>选择数量</td>
           </th>
-          <tr>
-              <td>橘猫</td>
-              <td>$2000</td>
+          <tr v-for="(cat,index) in catList" :key="index">
+              <td>{{ cat.name }}</td>
+              <td>{{ cat.price }}</td>
               <td>
-                <choose-num :num=0 @listenToAdd='AddToTotal(2000)' @listenToCut='CutToTotal(2000)'></choose-num>
-              </td>
-          </tr>
-          <tr>
-              <td>布偶猫</td>
-              <td>$8000</td>
-              <td>
-                  <choose-num :num=0 @listenToAdd='AddToTotal(8000)' @listenToCut='CutToTotal(8000)'></choose-num>
-              </td>
-          </tr>
-          <tr>
-              <td>畅喵</td>
-              <td>$10000</td>
-              <td>
-                  <choose-num :num=0 @listenToAdd='AddToTotal(10000)' @listenToCut='CutToTotal(10000)'></choose-num>
+                  <choose-num :num="cat.num" @listenToAdd='AddToTotal(cat.price)' @listenToCut='CutToTotal(cat.price)'></choose-num>
               </td>
           </tr>
       </table>
@@ -40,6 +26,23 @@ export default {
     name: 'Shopcart',
     data() {
         return {
+            catList: [
+                {
+                    name: '橘猫',
+                    price: 2000,
+                    num: 0
+                },
+                {
+                    name: '布偶猫',
+                    price: 8000,
+                    num: 0
+                },
+                {
+                    name: '畅猫',
+                    price: 10000,
+                    num: 0
+                }
+            ],
             total: 0
         }
     },
@@ -51,6 +54,9 @@ export default {
         CutToTotal(num) {
             this.total -= num
         }
+    },
+    mounted() {
+        console.log(this.title)
     },
     components: {
         ChooseNum
