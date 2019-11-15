@@ -21,28 +21,13 @@
 
 <script>
 import ChooseNum from './ChooseNum'
-
+import { getList } from '../network/api'
+ 
 export default {
     name: 'Shopcart',
     data() {
         return {
-            catList: [
-                {
-                    name: '橘猫',
-                    price: 2000,
-                    num: 0
-                },
-                {
-                    name: '布偶猫',
-                    price: 8000,
-                    num: 0
-                },
-                {
-                    name: '畅猫',
-                    price: 10000,
-                    num: 0
-                }
-            ],
+            catList: [],
             total: 0
         }
     },
@@ -53,7 +38,15 @@ export default {
         },
         CutToTotal(num) {
             this.total -= num
+        },
+        getCatList() {
+            getList().then((res) => {
+                this.catList = res.data.catList
+            })
         }
+    },
+    created() {
+        this.getCatList()
     },
     mounted() {
         console.log(this.title)
